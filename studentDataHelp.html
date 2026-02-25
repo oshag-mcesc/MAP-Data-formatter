@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+
+    /* ── Reset & Base ───────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      font-size: 13px;
+      color: #202124;
+      background: #f8f9fa;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* ── Header Banner ──────────────────────────────────────────────────── */
+    .header {
+      background: #1a73e8;
+      color: #ffffff;
+      padding: 18px 28px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-icon {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .header-text h1 {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .header-text p {
+      font-size: 12px;
+      opacity: 0.88;
+      margin-top: 2px;
+    }
+
+    /* ── Scrollable Content Area ────────────────────────────────────────── */
+    .content {
+      padding: 20px 28px 24px;
+      overflow-y: auto;
+      max-height: 560px;
+    }
+
+    /* ── Section Cards ──────────────────────────────────────────────────── */
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+
+    .card-title {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a73e8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .card-title .icon { font-size: 15px; }
+
+    /* ── Overview text ──────────────────────────────────────────────────── */
+    .overview-text {
+      line-height: 1.65;
+      color: #3c4043;
+    }
+
+    /* ── Source Tabs Chips ──────────────────────────────────────────────── */
+    .tab-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .chip {
+      background: #e8f0fe;
+      color: #1a73e8;
+      border-radius: 16px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Google Sans', Arial, sans-serif;
+    }
+
+    .chip.green  { background: #e6f4ea; color: #137333; }
+    .chip.orange { background: #fef7e0; color: #b06000; }
+
+    /* ── Quick Start Steps ──────────────────────────────────────────────── */
+    .step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 11px;
+      color: #3c4043;
+      line-height: 1.6;
+    }
+
+    .step:last-child { margin-bottom: 0; }
+
+    .step-num {
+      background: #1a73e8;
+      color: #fff;
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text { flex: 1; }
+
+    /* ── Menu Command Table ─────────────────────────────────────────────── */
+    .cmd-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .cmd-table th {
+      text-align: left;
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #5f6368;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0 8px 6px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .cmd-table td {
+      padding: 7px 8px;
+      vertical-align: top;
+      border-bottom: 1px solid #f1f3f4;
+      line-height: 1.5;
+      color: #3c4043;
+    }
+
+    .cmd-table tr:last-child td { border-bottom: none; }
+
+    .cmd-name {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-weight: 500;
+      color: #202124;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    /* ── Troubleshooting Items ──────────────────────────────────────────── */
+    .trouble-item {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1f3f4;
+    }
+
+    .trouble-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .trouble-q {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-weight: 500;
+      color: #c5221f;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .trouble-a {
+      color: #3c4043;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+
+    /* ── Support Card ───────────────────────────────────────────────────── */
+    .support-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 7px;
+      color: #3c4043;
+      line-height: 1.55;
+    }
+
+    .support-line:last-child { margin-bottom: 0; }
+    .support-line .icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Close Button ───────────────────────────────────────────────────── */
+    .footer {
+      text-align: right;
+      padding: 0 28px 18px;
+    }
+
+    .btn-close {
+      background: #1a73e8;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 24px;
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.25px;
+      transition: background 0.15s;
+    }
+
+    .btn-close:hover { background: #1557b0; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <div class="header">
+    <div class="header-icon">📊</div>
+    <div class="header-text">
+      <h1>Student Data — Help &amp; Instructions</h1>
+      <p>Achievement Status and Growth (ASG) Report Consolidation Tool</p>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ── 1. Overview ──────────────────────────────────────────────────── -->
+    <div class="card">
+      <div class="card-title"><span class="icon">📋</span> Overview</div>
+      <p class="overview-text">
+        This spreadsheet automates the consolidation of student Math and ELA
+        percentile data from the <strong>Achievement Status and Growth (ASG)
+        Report</strong> across three testing seasons. Raw data is loaded into
+        three source tabs, scripts clean and organize the data into seasonal
+        tabs, and finally everything is merged into a single
+        <strong>Combined</strong> tab sorted by student name — ready for
+        review or export.
+      </p>
+      <div class="tab-chips">
+        <span class="chip">map_fall</span>
+        <span class="chip">map_winter</span>
+        <span class="chip">map_spring</span>
+        <span class="chip green">fall &nbsp;·&nbsp; winter &nbsp;·&nbsp; spring</span>
+        <span class="chip orange">Combined</span>
+      </div>
+    </div>
+
+    <!-- ── 2. Quick Start ────────────────────────────────────────────────── -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🚀</span> Quick Start — Step by Step</div>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Open the <strong>ASG Report</strong> for the season you are updating and export or copy the raw data.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Paste the raw data into the correct source tab — <strong>map_fall</strong>, <strong>map_winter</strong>, or <strong>map_spring</strong>. Make sure the data starts at <strong>row 1</strong> with headers and that columns <strong>F through X</strong> are intact.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">From the menu bar click <strong>Student Data</strong> to open the menu.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">Choose the matching <strong>Update [Season] Tab</strong> command (e.g. <em>Update Fall Tab</em>). The script will create or refresh that seasonal tab automatically.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-text">Repeat steps 1–4 for each season that has new data.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-text">Once all seasonal tabs are current, click <strong>Update Combined Tab</strong> to merge all three seasons into the final <strong>Combined</strong> tab, sorted by last name then first name.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-text">Review the <strong>Combined</strong> tab — each student will have at most two rows: one for <em>Mathematics</em> and one for <em>Language Arts</em>, with percentile columns for each season.</div>
+      </div>
+
+    </div>
+
+    <!-- ── 3. Menu Commands ──────────────────────────────────────────────── -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🖱️</span> Menu Commands</div>
+      <table class="cmd-table">
+        <thead>
+          <tr>
+            <th style="width:36%">Command</th>
+            <th>What It Does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cmd-name">Update Fall Tab</td>
+            <td>Reads <em>map_fall</em>, filters to Math students, and writes
+              the cleaned data to the <em>fall</em> tab. Creates the tab if
+              it does not exist.</td>
+          </tr>
+          <tr>
+            <td class="cmd-name">Update Winter Tab</td>
+            <td>Same as above using <em>map_winter</em> → <em>winter</em> tab.</td>
+          </tr>
+          <tr>
+            <td class="cmd-name">Update Spring Tab</td>
+            <td>Same as above using <em>map_spring</em> → <em>spring</em> tab.</td>
+          </tr>
+          <tr>
+            <td class="cmd-name">Update All Seasons</td>
+            <td>Runs all three seasonal updates in sequence (fall → winter →
+              spring) and shows one summary alert when complete. Use this
+              when you have loaded fresh data into all three source tabs.</td>
+          </tr>
+          <tr>
+            <td class="cmd-name">Update Combined Tab</td>
+            <td>Merges the <em>fall</em>, <em>winter</em>, and <em>spring</em>
+              tabs into the <strong>Combined</strong> tab. Matches students
+              across seasons, fills in missing percentiles with blanks, and
+              sorts by last name then first name.</td>
+          </tr>
+          <tr>
+            <td class="cmd-name">Help &amp; Instructions</td>
+            <td>Opens this dialog.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── 4. Troubleshooting ────────────────────────────────────────────── -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🔧</span> Troubleshooting</div>
+
+      <div class="trouble-item">
+        <div class="trouble-q">⚠️ &nbsp;"Source tab map_[season] was not found"</div>
+        <div class="trouble-a">The script cannot locate the raw data tab. Check that the tab is
+          named exactly <strong>map_fall</strong>, <strong>map_winter</strong>, or
+          <strong>map_spring</strong> (all lowercase, underscore, no spaces). Rename
+          it if needed and run the command again.</div>
+      </div>
+
+      <div class="trouble-item">
+        <div class="trouble-q">⚠️ &nbsp;"Source tab appears to have no data"</div>
+        <div class="trouble-a">The source tab exists but is empty or only has a header row.
+          Paste the ASG Report data into the tab starting at row 1 and make
+          sure the paste includes all columns up to at least column X.</div>
+      </div>
+
+      <div class="trouble-item">
+        <div class="trouble-q">⚠️ &nbsp;Seasonal tab is empty after running the update</div>
+        <div class="trouble-a">No rows matched the MATH filter in column F (ClassName).
+          Confirm that the ASG data was pasted into the correct source tab
+          and that column F contains class names including the word "MATH".
+          Column headers should be in row 1.</div>
+      </div>
+
+      <div class="trouble-item">
+        <div class="trouble-q">⚠️ &nbsp;Students are missing from the Combined tab</div>
+        <div class="trouble-a">The Combined tab is built from the seasonal tabs, not directly
+          from the source tabs. Make sure you have run the appropriate
+          <strong>Update [Season] Tab</strong> command for each season
+          before running <strong>Update Combined Tab</strong>.</div>
+      </div>
+
+      <div class="trouble-item">
+        <div class="trouble-q">⚠️ &nbsp;A student shows more than two rows in a seasonal tab</div>
+        <div class="trouble-a">This should not occur — the script deduplicates by Student ID
+          and Subject, keeping the first record found. If you see duplicates,
+          check the source tab for duplicate Student IDs or unexpected subject
+          values and correct the raw data before re-running the update.</div>
+      </div>
+
+      <div class="trouble-item">
+        <div class="trouble-q">⚠️ &nbsp;"Update All Seasons" completes but one tab is wrong</div>
+        <div class="trouble-a">Run the individual season update (e.g. <strong>Update Winter Tab</strong>)
+          to see the specific error alert for that season. Address the issue
+          in that source tab, re-run the individual update, then re-run
+          <strong>Update Combined Tab</strong> to refresh the final results.</div>
+      </div>
+
+    </div>
+
+    <!-- ── 5. Support ────────────────────────────────────────────────────── -->
+    <div class="card">
+      <div class="card-title"><span class="icon">💬</span> Support &amp; Contact</div>
+      <div class="support-line">
+        <span class="icon">👤</span>
+        <span>For questions or issues contact your <strong>data coordinator</strong>
+        or the staff member who manages this spreadsheet.</span>
+      </div>
+      <div class="support-line">
+        <span class="icon">📧</span>
+        <span>Email: <strong><a href="mailto:katherine.pearson@mcesc.org">Katie Pearson</a></strong></span>
+      </div>
+      <div class="support-line">
+        <span class="icon">📝</span>
+        <span>When reporting an issue please include the <strong>exact error message</strong>
+        shown and the <strong>season tab</strong> you were updating.</span>
+      </div>
+    </div>
+
+  </div><!-- /.content -->
+
+  <!-- ── Close Button ───────────────────────────────────────────────────── -->
+  <div class="footer">
+    <button class="btn-close" onclick="google.script.host.close()">Close</button>
+  </div>
+
+</body>
+</html>
