@@ -31,7 +31,7 @@
  *   E: Student Grade
  *   F: [Season] %ile
  *
- * @author  You
+ * @author  Michael O'Shaughnessy and Claude
  * @version 1.1
  */
 
